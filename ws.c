@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "linux.h"
+/* if you want a windows verson, remove the comments
+#include "win.h"
+ */
 
 typedef enum{ NIL , NO_CONFIG ,WRONG_CONFIG } errType; 
 
@@ -27,9 +31,9 @@ void fileCopy(FILE *ifp, FILE *ofp){
 void cmd_construct(const char* whereToLoad, const char* args[], int isSearch, char* cmdStr){
 	char src[50];
 	strcpy(src,args[0]);
-	char* temp = strtok(src,"/ws");
-	strcpy(src,temp);
-	
+
+	src[strlen(src) - 6] = '\0';//remove the program name:ws.xxx from src
+
 	strcat(src,whereToLoad);
 	strcat(src,args[1]);
 
@@ -62,9 +66,10 @@ void cmd_construct(const char* whereToLoad, const char* args[], int isSearch, ch
 void show_usage(const char* path){
 	char src[50];
 	strcpy(src,path);
-	char* temp = strtok(src,"/ws");
-	strcpy(src,temp);
-	strcat(src,"\\README.txt");
+
+	src[strlen(src) - 6] = '\0';//remove the program name:ws.xxx from src
+
+	strcat(src,"README.txt");
 
 	FILE* filePointer = fopen(src,"r");
 
@@ -79,9 +84,9 @@ int main(int argc, const char* argv[]){
 	if( argc >= 2 ){
 		int isSearch = (argc>2)?1:0;
 		char cmdStr[150];
-		strcpy(cmdStr,"start ");
+		strcpy(cmdStr,C_T_O_B);
 
-		cmd_construct("\\config\\",argv,isSearch,cmdStr);
+		cmd_construct("config/",argv,isSearch,cmdStr);
 
 		system(cmdStr);
 	}else
