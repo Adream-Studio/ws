@@ -5,8 +5,6 @@ A command line application to conveniently visit website or search something by 
 ## Installation
 Download the ZIP pacakage, unpack it into some *path*, add this *path* to your **Environment Variables List** , make some config files in folder "config",  then you can call it in the CMD or any other Ternimal.
 
-### *ATTENTION:* The *path* cannot begin with "ws"!
-
 #### **A config file may be like this:**
 
 *File name* : github
