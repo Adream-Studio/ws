@@ -1,10 +1,27 @@
+/*
+	Author 	: Joe Nahm
+	Version : 0.3
+
+	Modules
+	fundamental{
+		Web site open	:	OK
+		Web search 		:	OK
+	}
+	configManagement{
+		Add 			:	Not yet
+		Remove 			:	Not yet
+		Edit 			:	Not yet
+		Show 			:	Not yet
+	}
+	errorProcessing		: 	Not yet
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "linux.h"
-/* if you want a windows verson, remove the comments
+// #include "linux.h"
+// if you want a windows verson, remove the comments
 #include "win.h"
- */
+ 
 
 typedef enum{ NIL , NO_CONFIG ,WRONG_CONFIG } errType; 
 
@@ -17,7 +34,7 @@ void error(char* errInfo,errType status){
 		case WRONG_CONFIG:
 			//edit_config(); remain to be done!!!
 		case NIL:
-			exit(1);
+			exit(EXIT_FAILURE);
 	}
 }
 
@@ -30,12 +47,11 @@ void fileCopy(FILE *ifp, FILE *ofp){
 
 void cmd_construct(const char* whereToLoad, const char* args[], int isSearch, char* cmdStr){
 	char src[50];
-	strcpy(src,args[0]);
 
+	strcpy(src,args[0]);		//init the current directory, with program name
 	src[strlen(src) - 6] = '\0';//remove the program name:ws.xxx from src
-
-	strcat(src,whereToLoad);
-	strcat(src,args[1]);
+	strcat(src,whereToLoad);	//add the file path to src
+	strcat(src,args[1]);		//add the file name to src
 
 	FILE* filePointer = fopen(src,"r");
 
@@ -46,20 +62,20 @@ void cmd_construct(const char* whereToLoad, const char* args[], int isSearch, ch
 				temp[i] = '\0';
 		}
 
-		fgets(temp,100-1,filePointer);
+		fgets(temp,100,filePointer);	//get the first line from the file
 
-		if( isSearch ){
-			fgets(temp,100-1,filePointer);
+		if( isSearch ){		//if with the search part
+			fgets(temp,100,filePointer);	//get the second line:search URL from the file
 			strcat(temp,args[2]);
 		}
 
 		fclose(filePointer);
 
-		if( strlen(temp) < 6 )
+		if( strlen(temp) < 7 )	//the length is 7, because of "http://"
 			error("Uho! Your config isn't right !", WRONG_CONFIG);
 
 		strcat(cmdStr,temp);
-	}else
+	}else	//failed to open the file
 		error("Oh! It seems you don't have that config !", NO_CONFIG);
 }
 
@@ -74,10 +90,12 @@ void show_usage(const char* path){
 	FILE* filePointer = fopen(src,"r");
 
 	if( filePointer != NULL ){
+		putchar('\n');
 		fileCopy(filePointer,stdout);
+		putchar('\n');
 		fclose(filePointer);
 	}else
-		puts("Your \"README.txt\" file is lost.\nYou can visit \"https://github.com/joenahm/ws\" to get help.");
+		system(C_T_O_B"https://github.com/joenahm/ws");
 }
 
 int main(int argc, const char* argv[]){
