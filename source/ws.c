@@ -18,9 +18,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "linux.h"
+#include "linux.h"
 // if you want a windows verson, remove the comments
-#include "win.h"
+// #include "win.h"
  
 
 typedef enum{ NIL , NO_CONFIG ,WRONG_CONFIG } errType; 
@@ -49,7 +49,8 @@ void cmd_construct(const char* whereToLoad, const char* args[], int isSearch, ch
 	char src[50];
 
 	strcpy(src,args[0]);		//init the current directory, with program name
-	src[strlen(src) - 6] = '\0';//remove the program name:ws.xxx from src
+	while( src[strlen(src)-1] != '/' )//remove the program name:ws.xxx from src
+		src[strlen(src)-1] = '\0';
 	strcat(src,whereToLoad);	//add the file path to src
 	strcat(src,args[1]);		//add the file name to src
 
@@ -83,7 +84,8 @@ void show_usage(const char* path){
 	char src[50];
 	strcpy(src,path);
 
-	src[strlen(src) - 6] = '\0';//remove the program name:ws.xxx from src
+	while( src[strlen(src)-1] != '/' )//remove the program name:ws.xxx from src
+		src[strlen(src)-1] = '\0';
 
 	strcat(src,"README.txt");
 
