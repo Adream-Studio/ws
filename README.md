@@ -3,7 +3,7 @@ A command line application to conveniently visit website or search something by 
 
 
 ## Installation
-Download the ZIP pacakage, unpack it into some *path*, add this *path* to your **Environment Variables List** , make some config files in folder "config",  then you can call it in the CMD or any other Ternimal.
+Download the ZIP pacakage, unpack it, move the *files and folder in the folder called **release*** into some *path*, add this *path* to your **Environment Variables List** , make some config files in folder "config",  then you can call it in the CMD or any other Ternimal.
 
 #### **A config file may be like this:**
 
