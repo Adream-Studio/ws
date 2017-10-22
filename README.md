@@ -21,3 +21,9 @@ ws [config name] [<things you want to search>]
 example1 : ws github 
 example2 : ws github something-can-open-websites-in-terminal
 ```
+## Remain to be done
+1. error()
+2. add_onfig()
+3. remove_config()
+4. edit_config()
+5. show_config()
