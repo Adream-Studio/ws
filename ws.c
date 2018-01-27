@@ -18,14 +18,33 @@ int main(int argc, const char *argv[]){
 
 				count++;
 			}
+
 			searcher(argv[1],keywords);
 		}
 		break;
 		case OPTION:
-			puts("option mode");
-		break;
-		case BOOKMARK:
-			puts("bookmark mode");
+			switch( optionParser(argv) ){
+				case LIST:
+					lister();
+				break;
+				case ADD:
+				break;
+				case EDIT:
+					editor();
+				break;
+				case DROP:
+				break;
+				case HELP:
+					showHelpInfo();
+				break;
+			}
+			//现在只剩下这个了
+			/*
+				-l 查看记录
+				-e 编辑记录
+				-d 删除记录
+				-a 增加记录
+			*/
 		break;
 	}
 

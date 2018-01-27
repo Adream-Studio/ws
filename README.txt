@@ -1,12 +1,15 @@
 ws - A little program to open a website or do a web search by using web browser.
 
 (type "ws -h" for more)
--------------------------------------------------------
-Usage:	ws [website name] [<things you want to search>]
 
-example1 : ws github
-- to open github (which is in the config file already).
+Usage:	
+1. ws [website]
 
-example2 : ws github keywords-to-search
-- do a search in github.
--------------------------------------------------------
+	example : ws github
+	- to open github (which is in the record file already).
+
+2. ws [website or search engine] [keywords]
+
+	example : ws github MyLittleCPublicLibrary
+	- do a search in github.
+	

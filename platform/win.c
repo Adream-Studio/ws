@@ -20,3 +20,21 @@ void browserOpen(char *url){
 	//puts(cmdStr);
 	system(cmdStr);
 }
+
+void getAllFileName(char *dirPath, void (*visit)(const char *fileName)){
+	struct _finddata_t fa;
+	long fHandle;
+
+	if( (fHandle=_findfirst( dirPath, &fa )) == -1L ){
+		printf( "WARNING: No file in \"%s\"\n", dirPath);
+		return;
+	}else{
+		do{
+			if( strcmp(fa.name,".") && strcmp(fa.name,"..") ){
+				visit(fa.name);
+			}
+		}while( _findnext(fHandle,&fa) == 0 );
+
+		_findclose( fHandle );
+	}	
+}
