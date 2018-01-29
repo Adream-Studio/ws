@@ -21,16 +21,19 @@ int argParser(int argc, const char *argv[]);
 void operner(const char *record);
 void searcher(const char *record, char *keywords);
 
-#define HELP	-1
-#define LIST	4
-#define ADD		5
-#define EDIT	6
-#define DROP	7 
-int optionParser(const char *argv[]);
+#define HELP			-1
+#define LIST			4
+#define ADD_SITE		5
+#define ADD_SEARCHER	6
+#define EDIT_SITE		7
+#define EDIT_SEARCHER	8
+#define DROP_SITE		9
+#define DROP_SEARCHER	10
+int optionParser(int argc, const char *argv[]);
 
 void lister(void);
-void adder(void);
-void editor(void);
-void deleter(void);
+void adder(const char *filePath, const char *fileName);
+void editor(const char *filePath, const char *fileName);
+void deleter(const char *filePath, const char *fileName);
 
 #endif

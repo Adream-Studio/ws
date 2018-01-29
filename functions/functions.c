@@ -26,10 +26,13 @@ void showWelcomeInfo(void){
 
 void showHelpInfo(void){
 	puts("Usage:\n");
-	puts("\t-l : List all of the records.");
-	puts("\t-a : Add records.");
-	puts("\t-e : Edit records.");
-	puts("\t-d : Delete records.");
+	puts("\t-l : List all of the records.\n");
+	puts("\t-a -i <name> : Add site record.");
+	puts("\t-a -e <name> : Add searcher record.\n");
+	puts("\t-e -i <name> : Edit site record.");
+	puts("\t-e -e <name> : Edit searcher record.\n");
+	puts("\t-d -i <name> : Delete site record.");
+	puts("\t-d -e <name> : Delete searcher record.\n");
 	puts("\t-? : the \"?\" can be any thing else to call for this page.");
 }
 
@@ -90,83 +93,28 @@ void lister(void){
 	getAllFileName(path,&fileNameVisitor);
 }
 
-void editor(void){
-	char filePath[MAX_PATH];
-	getRootPath(filePath);
-
-	lister();
-
-	char fileName[MAX_FILENAME];
-	printf("\nWhat type do you want to edit\n(\"i\" for site/\"e\" for search): ");
+void editor(const char *filePath, const char *fileName){
+	puts("\nWhat do you want to edit ?");
+	printf("(1 for \"name\", 2 for \"content\"): ");
 	fflush(stdout);
 
-	char type = getchar();
-	printf("File name (");
-	if( type == 'i' ){
-		strcat(filePath,"sites\\");
-		printf("sites\\):");
-	}else if( type == 'e' ){
-		strcat(filePath,"searchers\\");
-		printf("searchers\\):");
+	int type;
+	scanf("%d", &type);
+	if( type == 1 ){
+		char newName[MAX_FILENAME];
+		printf("new name: ");
+		fflush(stdout);
+		//读取文件名
+		char temp1[MAX_PATH],temp2[MAX_PATH];
+		strcpy(temp1,filePath);
+		strcat(temp1,fileName);
+		rename();
+	}else if( type == 2 ){
+		;
 	}else{
-		fprintf(stderr, "\nERROR: Invalid type !\n");
+		fprintf(stderr, "ERROR: Invalid type !\n");
 		exit(EXIT_FAILURE);
 	}
-	fflush(stdout);
-	
-
-	char buf = getchar(); //reject the '\n'
-	int count = 0;
-	while( (buf=getchar()) != '\n' 
-		&&	count < MAX_FILENAME ){
-
-		fileName[count] = buf;
-
-		count++;
-	}
-	fileName[count] = '\0';
-
-	strcat(filePath,fileName);
-	puts(filePath);
-
-	FILE *fp;
-
-	fp = fopen(filePath,"r");
-	if( fp != NULL ){
-		puts("Old: ");
-		putchar('\t');
-		fileCopy(fp,stdout);
-		putchar('\n');
-
-		fclose(fp);
-	}else{
-		fprintf(stderr, "ERROR: Failed to open \"%s\" !\n", filePath);
-		exit(EXIT_FAILURE);
-	}
-
-	printf("New: ");
-	fflush(stdout);
-	char content[MAX_CONTENT];
-	count = 0;
-	while( (buf=getchar()) != '\n' 
-		&&	count < MAX_CONTENT ){
-
-		content[count] = buf;
-
-		count++;
-	}
-	content[count] = '\0';
-
-	fp = fopen(filePath,"w");
-	if( fp != NULL ){
-		fputs(content, fp);
-
-		fclose(fp);
-	}else{
-		fprintf(stderr, "ERROR: Failed to open \"%s\" !\n", filePath);
-		exit(EXIT_FAILURE);
-	}
-
 }
 
 int argParser(int argc, const char *argv[]){
@@ -192,19 +140,39 @@ int argParser(int argc, const char *argv[]){
 	return status;
 }
 
-int optionParser(const char *argv[]){
+int optionParser(int argc, const char *argv[]){
 	int status;
 
-	if( argv[1][1] == 'l' ){
-		status = LIST;
-	}else if( argv[1][1] == 'a' ){
-		status = ADD;
-	}else if( argv[1][1] == 'e' ){
-		status = EDIT;
-	}else if( argv[1][1] == 'd' ){
-		status = DROP;
+	if( argc > 3 ){
+		if( argv[2][1] == 'i' ){
+			if( argv[1][1] == 'a' ){
+				status = ADD_SITE;
+			}else if( argv[1][1] == 'e' ){
+				status = EDIT_SITE;
+			}else if( argv[1][1] == 'd' ){
+				status = DROP_SITE;
+			}else{
+				status = HELP;
+			}
+		}else if( argv[2][1] == 'e' ){
+			if( argv[1][1] == 'a' ){
+				status = ADD_SEARCHER;
+			}else if( argv[1][1] == 'e' ){
+				status = EDIT_SEARCHER;
+			}else if( argv[1][1] == 'd' ){
+				status = DROP_SEARCHER;
+			}else{
+				status = HELP;
+			}
+		}else{
+			status = HELP;
+		}
 	}else{
-		status = HELP;
+		if( argv[1][1] == 'l' ){
+			status = LIST;
+		}else{
+			status = HELP;
+		}
 	}
 
 	return status;

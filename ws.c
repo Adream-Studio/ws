@@ -23,16 +23,20 @@ int main(int argc, const char *argv[]){
 		}
 		break;
 		case OPTION:
-			switch( optionParser(argv) ){
+			switch( optionParser(argc,argv) ){
 				case LIST:
 					lister();
 				break;
-				case ADD:
+				case ADD_SITE:
 				break;
-				case EDIT:
-					editor();
+				case EDIT_SITE:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"sites\\");
+					editor(path,argv[3]);
+				}
 				break;
-				case DROP:
+				case DROP_SITE:
 				break;
 				case HELP:
 					showHelpInfo();
