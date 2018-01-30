@@ -93,7 +93,7 @@ void lister(void){
 	getAllFileName(path,&fileNameVisitor);
 }
 
-void editor(const char *filePath, const char *fileName){
+void editor(char *filePath, const char *fileName){
 	puts("\nWhat do you want to edit ?");
 	printf("(1 for \"name\", 2 for \"content\"): ");
 	fflush(stdout);
@@ -101,18 +101,88 @@ void editor(const char *filePath, const char *fileName){
 	int type;
 	scanf("%d", &type);
 	if( type == 1 ){
-		char newName[MAX_FILENAME];
 		printf("new name: ");
 		fflush(stdout);
-		//读取文件名
-		char temp1[MAX_PATH],temp2[MAX_PATH];
-		strcpy(temp1,filePath);
-		strcat(temp1,fileName);
-		rename();
+
+		char newName[MAX_FILENAME];
+		char c = getchar(); //skip the '\n'
+		int i = 0;
+		while( (c=getchar())!='\n' && i<MAX_FILENAME ){
+			newName[i] = c;
+			i++;
+		}
+		newName[i] = '\0';
+
+		char oldPath[MAX_PATH],newPath[MAX_PATH];
+		strcpy(oldPath,filePath);
+		strcat(oldPath,fileName);
+		strcpy(newPath,filePath);
+		strcat(newPath,newName);
+		rename(oldPath,newPath);
+		
+		printf("\nRename: %s\n", newPath);
 	}else if( type == 2 ){
-		;
+		printf("new content: ");
+		fflush(stdout);
+
+		char newContent[MAX_CONTENT];
+		char c = getchar(); //skip the '\n'
+		int i = 0;
+		while( (c=getchar())!='\n' && i<MAX_CONTENT ){
+			newContent[i] = c;
+			i++;
+		}
+		newContent[i] = '\0';
+
+		strcat(filePath,fileName);
+
+		FILE *fp = fopen(filePath,"w");
+		if( fp != NULL ){
+			fputs(newContent,fp);
+			printf("\nChange: %s\n", filePath);
+			fclose(fp);
+		}else{
+			fprintf(stderr, "ERROR: Failed to open \"%s\" !\n", filePath);
+			exit(EXIT_FAILURE);
+		}
 	}else{
 		fprintf(stderr, "ERROR: Invalid type !\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void adder(char *filePath, const char *fileName){
+	printf("new content for [%s]: ", fileName);
+	fflush(stdout);
+
+	char newContent[MAX_CONTENT];
+	char c;
+	int i = 0;
+	while( (c=getchar())!='\n' && i<MAX_CONTENT ){
+		newContent[i] = c;
+		i++;
+	}
+	newContent[i] = '\0';
+
+	strcat(filePath,fileName);
+	
+	FILE *fp = fopen(filePath,"w");
+	if( fp != NULL ){
+		fputs(newContent,fp);
+		printf("\nCreate: %s\n", filePath);
+		fclose(fp);
+	}else{
+		fprintf(stderr, "ERROR: Failed to create \"%s\" !\n", filePath);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void droper(char *filePath, const char *fileName){
+	strcat(filePath,fileName);
+	if( remove(filePath) == 0 ){
+		printf("\nDelete: %s\n", filePath);
+	}else{
+		fprintf(stderr, "ERROR: Failed to delete \"%s\" !\n", filePath);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -32,8 +32,8 @@ void searcher(const char *record, char *keywords);
 int optionParser(int argc, const char *argv[]);
 
 void lister(void);
-void adder(const char *filePath, const char *fileName);
-void editor(const char *filePath, const char *fileName);
-void deleter(const char *filePath, const char *fileName);
+void adder(char *filePath, const char *fileName);
+void editor(char *filePath, const char *fileName);
+void droper(char *filePath, const char *fileName);
 
 #endif

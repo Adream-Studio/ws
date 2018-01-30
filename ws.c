@@ -27,28 +27,52 @@ int main(int argc, const char *argv[]){
 				case LIST:
 					lister();
 				break;
-				case ADD_SITE:
+				case ADD_SITE:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"sites\\");
+					adder(path,argv[3]);
+				}
+				break;
+				case ADD_SEARCHER:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"searchers\\");
+					adder(path,argv[3]);
+				}
 				break;
 				case EDIT_SITE:{
+					//验证文件名是否存在
 					char path[MAX_PATH];
 					getRootPath(path);
 					strcat(path,"sites\\");
 					editor(path,argv[3]);
 				}
 				break;
-				case DROP_SITE:
+				case EDIT_SEARCHER:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"searchers\\");
+					editor(path,argv[3]);
+				}
+				break;
+				case DROP_SITE:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"sites\\");
+					droper(path,argv[3]);
+				}
+				case DROP_SEARCHER:{
+					char path[MAX_PATH];
+					getRootPath(path);
+					strcat(path,"searchers\\");
+					droper(path,argv[3]);
+				}
 				break;
 				case HELP:
 					showHelpInfo();
 				break;
 			}
-			//现在只剩下这个了
-			/*
-				-l 查看记录
-				-e 编辑记录
-				-d 删除记录
-				-a 增加记录
-			*/
 		break;
 	}
 
