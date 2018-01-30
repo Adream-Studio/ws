@@ -3,27 +3,39 @@ A command line application to conveniently visit website or search something by 
 
 
 ## Installation
-Download the ZIP pacakage, unpack it, move the *files and folder in the folder called **release*** into some *path*, add this *path* to your **Environment Variables List** , make some config files in folder "config",  then you can call it in the CMD or any other Ternimal.
+Fork my `Release` branch, then clone it to your computer.
 
-#### **A config file may be like this:**
+> Add the path of this program to your environment variables list would be better !
 
-*File name* : github
-
-*File content* : 
-```
-https://github.com
-https://github.com/search?q=
-```
 ## Usage
 ```
-ws [config name] [<things you want to search>]
+1. ws [website]
 
-example1 : ws github 
-example2 : ws github something-can-open-websites-in-terminal
+	example : ws github
+	- to open github (which is in the record file already).
+
+2. ws [website or search engine] [keywords]
+
+	example : ws github MyLittleCPublicLibrary
+	- do a search in github.
 ```
+#### Management
+```
+-l : List all of the records.
+
+-a -i <name> : Add site record.
+-a -e <name> : Add searcher record.
+
+-e -i <name> : Edit site record.
+-e -e <name> : Edit searcher record.
+
+-d -i <name> : Delete site record.
+-d -e <name> : Delete searcher record.
+
+-? : the "?" can be any thing else to call for this page.
+```
+
 ## Remain to be done
-1. error()
-2. add_onfig()
-3. remove_config()
-4. edit_config()
-5. show_config()
+
+1. Linux Version
+2. MacOS Version
