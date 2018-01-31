@@ -42,7 +42,6 @@ int main(int argc, const char *argv[]){
 				}
 				break;
 				case EDIT_SITE:{
-					//验证文件名是否存在
 					char path[MAX_PATH];
 					getRootPath(path);
 					strcat(path,"sites\\");
@@ -62,6 +61,7 @@ int main(int argc, const char *argv[]){
 					strcat(path,"sites\\");
 					droper(path,argv[3]);
 				}
+				break;
 				case DROP_SEARCHER:{
 					char path[MAX_PATH];
 					getRootPath(path);

@@ -94,6 +94,17 @@ void lister(void){
 }
 
 void editor(char *filePath, const char *fileName){
+	char tempPath[MAX_PATH];
+	strcpy(tempPath,filePath);
+	strcat(tempPath,fileName);
+	FILE *checkFp = fopen(tempPath,"r");
+	if( checkFp == NULL ){
+		fprintf(stderr, "ERROR: No record for \"%s\" !\n", tempPath);
+		exit(EXIT_FAILURE);
+	}else{
+		fclose(checkFp);
+	}
+
 	puts("\nWhat do you want to edit ?");
 	printf("(1 for \"name\", 2 for \"content\"): ");
 	fflush(stdout);
@@ -119,7 +130,7 @@ void editor(char *filePath, const char *fileName){
 		strcpy(newPath,filePath);
 		strcat(newPath,newName);
 		rename(oldPath,newPath);
-		
+
 		printf("\nRename: %s\n", newPath);
 	}else if( type == 2 ){
 		printf("new content: ");
@@ -142,7 +153,7 @@ void editor(char *filePath, const char *fileName){
 			printf("\nChange: %s\n", filePath);
 			fclose(fp);
 		}else{
-			fprintf(stderr, "ERROR: Failed to open \"%s\" !\n", filePath);
+			fprintf(stderr, "ERROR: Failed to change \"%s\" !\n", filePath);
 			exit(EXIT_FAILURE);
 		}
 	}else{
