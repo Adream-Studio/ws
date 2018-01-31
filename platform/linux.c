@@ -41,5 +41,6 @@ void browserOpen(char *url){
 	char cmdStr[500];
 	strcpy(cmdStr,"x-www-browser ");
 	strcat(cmdStr,url);
+	strcat(cmdStr," 1>&- 2>&- &");
 	system(cmdStr);
 }
