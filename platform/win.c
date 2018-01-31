@@ -1,4 +1,7 @@
-#include "win.h"
+#include <windows.h>
+#include <io.h>
+#include <string.h>
+#include <stdio.h>
 
 void getRootPath(char *rootPath){
 	TCHAR exeFullPath[MAX_PATH];
@@ -13,15 +16,8 @@ void getRootPath(char *rootPath){
 	strcpy(rootPath,exeFullPath);	
 }
 
-void browserOpen(char *url){
-	char cmdStr[500];
-	strcpy(cmdStr,"start ");
-	strcat(cmdStr,url);
-	//puts(cmdStr);
-	system(cmdStr);
-}
-
 void getAllFileName(char *dirPath, void (*visit)(const char *fileName)){
+	strcat(dirPath,"\\*");
 	struct _finddata_t fa;
 	long fHandle;
 
@@ -37,4 +33,12 @@ void getAllFileName(char *dirPath, void (*visit)(const char *fileName)){
 
 		_findclose( fHandle );
 	}	
+}
+
+void browserOpen(char *url){
+	char cmdStr[500];
+	strcpy(cmdStr,"start ");
+	strcat(cmdStr,url);
+	//puts(cmdStr);
+	system(cmdStr);
 }

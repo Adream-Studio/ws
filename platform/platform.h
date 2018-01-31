@@ -1,10 +1,5 @@
-#ifndef _WIN_H_
-#define _WIN_H_
-
-#include <windows.h>
-#include <io.h>
-#include <string.h>
-#include <stdio.h>
+#ifndef _PLATFORM_H_
+#define _PLATFORM_H_
 
 void getRootPath(char *rootPath);
 void getAllFileName(char *dirPath, void (*visit)(const char *fileName));

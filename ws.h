@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "platform/linux.h"
-#include "platform/win.h"
+#define MAX_PATH 1024
+
+#include "platform/platform.h"
 
 #include "functions/functions.h"
 

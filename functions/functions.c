@@ -40,7 +40,7 @@ void opener(const char *record){
 	char sitePath[MAX_PATH];
 
 	getRootPath(sitePath);
-	strcat(sitePath,"sites\\");
+	strcat(sitePath,"sites/");
 	strcat(sitePath,record);
 
 	FILE *fp = fopen(sitePath,"r");
@@ -59,7 +59,7 @@ void searcher(const char *record, char *keywords){
 	char searchPath[MAX_PATH];
 
 	getRootPath(searchPath);
-	strcat(searchPath,"searchers\\");
+	strcat(searchPath,"searchers/");
 	strcat(searchPath,record);
 
 	FILE *fp = fopen(searchPath,"r");
@@ -83,12 +83,12 @@ void lister(void){
 	char path[MAX_PATH];
 
 	getRootPath(path);
-	strcat(path,"sites\\*");
+	strcat(path,"sites");
 	puts("\nSites:");
 	getAllFileName(path,&fileNameVisitor);
 
 	getRootPath(path);
-	strcat(path,"searchers\\*");
+	strcat(path,"searchers");
 	puts("\nSearchers:");
 	getAllFileName(path,&fileNameVisitor);
 }

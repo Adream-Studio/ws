@@ -30,42 +30,42 @@ int main(int argc, const char *argv[]){
 				case ADD_SITE:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"sites\\");
+					strcat(path,"sites/");
 					adder(path,argv[3]);
 				}
 				break;
 				case ADD_SEARCHER:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"searchers\\");
+					strcat(path,"searchers/");
 					adder(path,argv[3]);
 				}
 				break;
 				case EDIT_SITE:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"sites\\");
+					strcat(path,"sites/");
 					editor(path,argv[3]);
 				}
 				break;
 				case EDIT_SEARCHER:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"searchers\\");
+					strcat(path,"searchers/");
 					editor(path,argv[3]);
 				}
 				break;
 				case DROP_SITE:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"sites\\");
+					strcat(path,"sites/");
 					droper(path,argv[3]);
 				}
 				break;
 				case DROP_SEARCHER:{
 					char path[MAX_PATH];
 					getRootPath(path);
-					strcat(path,"searchers\\");
+					strcat(path,"searchers/");
 					droper(path,argv[3]);
 				}
 				break;

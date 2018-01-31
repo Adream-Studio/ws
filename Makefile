@@ -13,10 +13,13 @@ ws.o : ws.c ws.h
 functions.o : ./functions/functions.c ./functions/functions.h
 	gcc -c -g ./functions/functions.c
 
-linux.o : ./platform/linux.c ./platform/linux.h
+functions : ./functions/functions.c ./functions/functions.h
+	gcc -c -g ./functions/functions.c win.o
+
+linux.o : ./platform/linux.c ./platform/platform.h
 	gcc -c -g ./platform/linux.c
 
-win.o : ./platform/win.c ./platform/win.h
+win.o : ./platform/win.c ./platform/platform.h
 	gcc -c -g ./platform/win.c
 
 clean-all : 

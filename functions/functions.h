@@ -5,8 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../platform/platform.h"
+
 #define MAX_FILENAME	100
 #define MAX_CONTENT		500
+#define MAX_PATH		1024
 
 void fileCopy(FILE *ifp, FILE *ofp);
 void showWelcomeInfo(void);
@@ -18,7 +21,7 @@ void showHelpInfo(void);
 #define OPTION		3
 int argParser(int argc, const char *argv[]);
 
-void operner(const char *record);
+void opener(const char *record);
 void searcher(const char *record, char *keywords);
 
 #define HELP			-1
