@@ -9,7 +9,7 @@
 
 #define MAX_FILENAME	100
 #define MAX_CONTENT		500
-#define MAX_PATH		1024
+#define PATH_MAX		1024
 
 void fileCopy(FILE *ifp, FILE *ofp);
 void showWelcomeInfo(void);

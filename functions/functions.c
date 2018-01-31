@@ -8,7 +8,7 @@ void fileCopy(FILE *ifp, FILE *ofp){
 }
 
 void showWelcomeInfo(void){
-	char infoPath[MAX_PATH];
+	char infoPath[PATH_MAX];
 	getRootPath(infoPath);
 	strcat(infoPath,"README.txt");
 
@@ -37,7 +37,7 @@ void showHelpInfo(void){
 }
 
 void opener(const char *record){
-	char sitePath[MAX_PATH];
+	char sitePath[PATH_MAX];
 
 	getRootPath(sitePath);
 	strcat(sitePath,"sites/");
@@ -46,7 +46,7 @@ void opener(const char *record){
 	FILE *fp = fopen(sitePath,"r");
 
 	if( fp != NULL ){
-		fgets(sitePath,MAX_PATH,fp);
+		fgets(sitePath,PATH_MAX,fp);
 		browserOpen(sitePath);
 
 		fclose(fp);
@@ -56,7 +56,7 @@ void opener(const char *record){
 }
 
 void searcher(const char *record, char *keywords){
-	char searchPath[MAX_PATH];
+	char searchPath[PATH_MAX];
 
 	getRootPath(searchPath);
 	strcat(searchPath,"searchers/");
@@ -65,7 +65,7 @@ void searcher(const char *record, char *keywords){
 	FILE *fp = fopen(searchPath,"r");
 
 	if( fp != NULL ){
-		fgets(searchPath,MAX_PATH,fp);
+		fgets(searchPath,PATH_MAX,fp);
 		strcat(searchPath,keywords);
 		browserOpen(searchPath);
 
@@ -80,7 +80,7 @@ void fileNameVisitor(const char *fileName){
 }
 
 void lister(void){
-	char path[MAX_PATH];
+	char path[PATH_MAX];
 
 	getRootPath(path);
 	strcat(path,"sites");
@@ -94,7 +94,7 @@ void lister(void){
 }
 
 void editor(char *filePath, const char *fileName){
-	char tempPath[MAX_PATH];
+	char tempPath[PATH_MAX];
 	strcpy(tempPath,filePath);
 	strcat(tempPath,fileName);
 	FILE *checkFp = fopen(tempPath,"r");
@@ -124,7 +124,7 @@ void editor(char *filePath, const char *fileName){
 		}
 		newName[i] = '\0';
 
-		char oldPath[MAX_PATH],newPath[MAX_PATH];
+		char oldPath[PATH_MAX],newPath[PATH_MAX];
 		strcpy(oldPath,filePath);
 		strcat(oldPath,fileName);
 		strcpy(newPath,filePath);
