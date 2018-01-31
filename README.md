@@ -3,7 +3,7 @@ A command line application to conveniently visit website or search something by 
 
 
 ## Installation
-Fork my `Release` branch, then clone it to your computer.
+Fork my [release](https://github.com/joenahm/ws/tree/release) branch, then clone it to your computer.
 
 > Add the path of this program to your environment variables list would be better !
 
