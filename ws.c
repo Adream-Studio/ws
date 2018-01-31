@@ -9,7 +9,7 @@ int main(int argc, const char *argv[]){
 			opener(argv[1]);
 		break;
 		case SEARCH:{
-			char keywords[MAX_PATH];
+			char keywords[PATH_MAX];
 			keywords[0] = '\0';
 			int count = 2;
 			while( count < argc ){
@@ -28,42 +28,42 @@ int main(int argc, const char *argv[]){
 					lister();
 				break;
 				case ADD_SITE:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"sites/");
 					adder(path,argv[3]);
 				}
 				break;
 				case ADD_SEARCHER:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"searchers/");
 					adder(path,argv[3]);
 				}
 				break;
 				case EDIT_SITE:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"sites/");
 					editor(path,argv[3]);
 				}
 				break;
 				case EDIT_SEARCHER:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"searchers/");
 					editor(path,argv[3]);
 				}
 				break;
 				case DROP_SITE:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"sites/");
 					droper(path,argv[3]);
 				}
 				break;
 				case DROP_SEARCHER:{
-					char path[MAX_PATH];
+					char path[PATH_MAX];
 					getRootPath(path);
 					strcat(path,"searchers/");
 					droper(path,argv[3]);

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_PATH 1024
+#define PATH_MAX 1024
 
 #include "platform/platform.h"
 
