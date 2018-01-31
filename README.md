@@ -8,4 +8,4 @@ Fork this branch, then clone it to your computer.
 > Add the path of this program to your environment variables list would be better !
 
 ## Usage
-[click to check](../master)
+[click to check](https://github.com/joenahm/ws)
