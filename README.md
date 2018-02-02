@@ -1,6 +1,10 @@
 # ws(web site || web search)
 A command line application to conveniently visit website or search something by using your web browser.
 
+![](https://img.shields.io/badge/Windows-Yes-blue.svg)
+![](https://img.shields.io/badge/Linux-Yes-blue.svg)
+![](https://img.shields.io/badge/MacOS-No-red.svg)
+![](https://img.shields.io/badge/MakeAvailable-Yes-green.svg)
 
 ## Installation
 Fork my [release](https://github.com/joenahm/ws/tree/release) branch, then clone it to your computer.
@@ -37,5 +41,5 @@ Fork my [release](https://github.com/joenahm/ws/tree/release) branch, then clone
 
 ## Remain to be done
 
-1. Linux Version
-2. MacOS Version
+1. MacOS Version
+2. All 32bit Versions
