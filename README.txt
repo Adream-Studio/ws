@@ -12,4 +12,3 @@ Usage:
 
 	example : ws github MyLittleCPublicLibrary
 	- do a search in github.
-	
